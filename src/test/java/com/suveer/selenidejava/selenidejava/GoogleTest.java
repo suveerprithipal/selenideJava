@@ -4,10 +4,16 @@ import org.junit.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 
+/**
+ * Created for demo on 9/12/17.
+ *
+ * @author Suveer Prithipal
+ */
+
 public class GoogleTest {
   @Test
   public void googlePageTest(){
-    /*
+    /**
       No need to create a webdriver instance!
 
       Selenide provides with easy to use API's that provide rich functionality.
@@ -22,7 +28,7 @@ public class GoogleTest {
     GooglePage googlePage = open("http://www.google.com",GooglePage.class);
 
 
-    /*
+    /**
       Now that we have an instance of webdriver up and we are on our test app, Google.
       We can then search something.
       Searching for something means it will return a result.
@@ -31,7 +37,7 @@ public class GoogleTest {
     SearchResultsPage searchResultsPage = googlePage.searchGoogle("selenide");
 
 
-    /*
+    /**
     Tests.
     Now that we have results, we can perform tests.
     Below, we use the searchResultsPage and query the class for expected results.
@@ -41,7 +47,7 @@ public class GoogleTest {
     searchResultsPage.getResults().get(0).shouldHave(text("Selenide: concise UI tests in Java"));
 
 
-    /*
+    /**
 
     Use page object models and design patterns
     This example is to demo the ease of use with Selenide.

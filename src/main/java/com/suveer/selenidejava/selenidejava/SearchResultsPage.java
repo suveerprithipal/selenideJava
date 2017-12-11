@@ -6,6 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.texts;
 
+/**
+ * Created for demo on 9/12/17.
+ *
+ * @author Suveer Prithipal
+ */
+
 public class SearchResultsPage {
   @FindBy(css = "#ires .g")
   private ElementsCollection results;
