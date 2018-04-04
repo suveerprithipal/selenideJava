@@ -1,5 +1,7 @@
 package com.suveer.selenidejava.selenidejava;
 
+import com.codeborne.selenide.Selenide;
+import org.junit.Before;
 import org.junit.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
@@ -11,6 +13,13 @@ import static com.codeborne.selenide.Selenide.open;
  */
 
 public class GoogleTest {
+
+  @Before
+  public void setup(){
+    System.setProperty("webdriver.chrome.driver", "C:/Tools/WebDrivers/chromedriver.exe");
+    System.setProperty("selenide.browser", "Chrome");
+  }
+
   @Test
   public void googlePageTest(){
     /**
@@ -25,7 +34,7 @@ public class GoogleTest {
 
       Passing it a class, provides the shape for the instance, giving it methods and defined functionality.
      */
-    GooglePage googlePage = open("http://www.google.com",GooglePage.class);
+       GooglePage googlePage = open("http://www.google.com",GooglePage.class);
 
 
     /**
@@ -44,7 +53,7 @@ public class GoogleTest {
 
      */
     try {
-      searchResultsPage.checkResultsSize(8);
+      searchResultsPage.checkResultsSize(10);
       searchResultsPage.getResults().get(0).shouldHave(text("Selenide: concise UI tests in Java"));
     }
     catch (Exception e){
@@ -59,5 +68,13 @@ public class GoogleTest {
     Its important to separate out your implementation for better maintenance, easy of reading and debugging.
      */
   }
+
+  @Test
+  public void xpathTest(){
+    GooglePage googlePage = open("http://www.google.com",GooglePage.class);
+    SearchResultsPage searchResultsPage = googlePage.searchiesGoogle("Selenide");
+
+  }
+
 
 }

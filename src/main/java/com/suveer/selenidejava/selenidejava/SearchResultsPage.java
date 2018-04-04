@@ -1,7 +1,10 @@
 package com.suveer.selenidejava.selenidejava;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+
+import javax.xml.xpath.XPath;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.texts;
@@ -15,6 +18,7 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 public class SearchResultsPage {
   @FindBy(css = "#ires .g")
   private ElementsCollection results;
+
 
   public void checkResultsSize(int expectedSize) {
     results.shouldHave(size(expectedSize));
