@@ -53,7 +53,7 @@ public class GoogleTest {
 
      */
     try {
-      searchResultsPage.checkResultsSize(10);
+      searchResultsPage.checkResultsSize(7);
       searchResultsPage.getResults().get(0).shouldHave(text("Selenide: concise UI tests in Java"));
     }
     catch (Exception e){
