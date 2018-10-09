@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import javax.xml.xpath.XPath;
 
 import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.CollectionCondition.texts;
 
 /**
@@ -21,7 +22,7 @@ public class SearchResultsPage {
 
 
   public void checkResultsSize(int expectedSize) {
-    results.shouldHave(size(expectedSize));
+    results.shouldHave(sizeGreaterThan(5));
   }
 
   public void checkResults(String... expectedTexts) {
