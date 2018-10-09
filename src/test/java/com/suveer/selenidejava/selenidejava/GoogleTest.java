@@ -39,6 +39,7 @@ public class GoogleTest {
   public void teardown() {
     if (driver != null) {
       driver.quit();
+      WebDriverRunner.closeWebDriver();
     }
   }
 
