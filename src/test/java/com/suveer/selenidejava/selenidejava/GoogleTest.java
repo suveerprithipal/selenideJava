@@ -1,10 +1,23 @@
 package com.suveer.selenidejava.selenidejava;
 
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
+import static io.github.bonigarcia.wdm.DriverManagerType.CHROME;
 
 /**
  * Created for demo on 9/12/17.
@@ -14,10 +27,19 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class GoogleTest {
 
+  private RemoteWebDriver driver;
+
   @Before
-  public void setup(){
-    System.setProperty("webdriver.chrome.driver", "C:/Tools/WebDrivers/chromedriver.exe");
-    System.setProperty("selenide.browser", "Chrome");
+  public void setup() throws MalformedURLException {
+    driver = new RemoteWebDriver(new URL("http://13.211.227.115:5555/wd/hub"), DesiredCapabilities.chrome());
+      WebDriverRunner.setWebDriver(driver);
+  }
+
+  @After
+  public void teardown() {
+    if (driver != null) {
+      driver.quit();
+    }
   }
 
   @Test
@@ -34,6 +56,7 @@ public class GoogleTest {
 
       Passing it a class, provides the shape for the instance, giving it methods and defined functionality.
      */
+
        GooglePage googlePage = open("http://www.google.com",GooglePage.class);
 
 
