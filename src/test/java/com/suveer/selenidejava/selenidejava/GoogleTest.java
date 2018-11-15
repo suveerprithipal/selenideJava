@@ -1,18 +1,19 @@
 package com.suveer.selenidejava.selenidejava;
 
 import com.codeborne.selenide.WebDriverRunner;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.LinkedList;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
@@ -23,29 +24,22 @@ import static com.codeborne.selenide.Selenide.open;
  * @author Suveer Prithipal
  */
 
+
 public class GoogleTest {
 
- private RemoteWebDriver driver;
+ private static RemoteWebDriver driver;
 
 
   @Before
   public void setup() throws MalformedURLException {
 
-      // gentrack winslave http://jenkinsmaster.talgentra.co.nz:4444/wd/hub
-      // aws hub http://13.211.227.115:5555/wd/hub
-//
     DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
-    desiredCapabilities.setVersion("2.42");
-    desiredCapabilities.setCapability("version","2.42");
+      desiredCapabilities.setCapability("--no-sandbox",true);
+//    desiredCapabilities.setCapability("--disable-dev-shm-usage",true);
+    desiredCapabilities.setCapability("--headless",true);
     desiredCapabilities.setPlatform(Platform.LINUX);
-    driver = new RemoteWebDriver(new URL("http://http://10.11.13.205:5555/wd/hub/"), DesiredCapabilities.chrome());
+    driver = new RemoteWebDriver(new URL("http://10.11.13.237:4444/wd/hub/"), desiredCapabilities);
     WebDriverRunner.setWebDriver(driver);
-
-
-//    WebDriverManager.config().setDriverUrl(new URL("http://10.11.13.205:5555/wd/hub"));
-//    WebDriverManager.chromedriver().setup();
-//    WebDriverManager.chromedriver().version("2.42");
-//    driver = new ChromeDriver();
 
   }
 
@@ -53,7 +47,7 @@ public class GoogleTest {
   public void teardown() {
     if (driver != null) {
       driver.quit();
-      WebDriverRunner.closeWebDriver();
+
     }
   }
 
